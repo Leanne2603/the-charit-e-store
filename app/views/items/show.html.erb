@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="display-4">Item Details</h1>
+        <p>
+        <strong>Item Name:</strong>
+        <%= @item.name %>
+        </p>
+
+        <p>
+        <strong>Item Price:</strong>
+        $<%= "%.2f" % @item.price %>
+        </p>
+
+        <p>
+        <strong>Description:</strong>
+        <%= @item.description %>
+        </p>
+
+        <%= link_to 'Edit Item', edit_item_path(@item) %> |
+        <%= link_to "Delete Item", item_path(@item), method: "delete", data: { confirm: "Are you sure" } %>
+        <br>
+        <br>
+        
+        <div class="col-md-6">
+            <% if @item.image.attached? %>
+            <p><%= cl_image_tag(@item.image.key, crop: :scale, width: 400, cloud_name: 'desxzkkeh') %></p>
+            <% end %>
+        </div>
+        <%= link_to 'Back', items_path %>
+    </div>
+</div>
