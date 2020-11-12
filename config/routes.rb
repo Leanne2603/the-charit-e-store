@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'items/index'
   devise_for :users
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
@@ -16,8 +17,15 @@ Rails.application.routes.draw do
   get 'appeals/:appeal_id', to: 'appeals#show', as: 'appeal'
   patch 'appeals/:appeal_id', to: 'appeals#update'
   get 'appeals/edit/:appeal_id', to: 'appeals#edit', as: 'edit_appeal'
-  get  "/appeals/:appeal_id/error", to: "appeal#error", as: "error"
   delete 'appeals/:appeal_id', to: 'appeals#destroy'
+
+  get '/items', to: 'items#index'
+  get '/items/new', to: 'items#new'
+  post '/items', to: 'items#create'
+  get 'items/:item_id', to: 'items#show', as: 'item'
+  patch 'items/:item_id', to: 'items#update'
+  get 'items/edit/:item_id', to: 'items#edit', as: 'edit_item'
+  delete 'items/:item_id', to: 'items#destroy'
 
   root to: 'home#index'
 end
