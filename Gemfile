@@ -5,6 +5,8 @@ ruby '2.7.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.4'
+
+gem "dotenv-rails", require: 'dotenv/rails-now'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
@@ -57,3 +59,5 @@ gem "jquery-rails", "~> 4.4"
 gem "simple_form", "~> 5.0"
 
 gem "devise", "~> 4.7"
+
+gem "rolify", "~> 5.3"

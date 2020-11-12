@@ -1,2 +1,50 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="display-4">The Charit-E-Store</h1>
+            <% if user_signed_in? %>
+                <p class="lead"> Welcome, <%= current_user.first_name %>!</p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute 
+                    irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+                    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                </p>
+            <% else %>
+                <p class="lead"> Thank you for visiting our site!</p>
+                <hr class="my-4">
+                <p>
+                    The purpose of The Charit-E-Store is to ensure that items are going to where they are needed in times of a crisis. It is a one 
+                    stop shop where you can purchase items for those in need. We ensure that donations are controlled and distributed evenly amongst 
+                    affected areas. Knowing where and what to donate can sometimes become overwhelming so we are here to help manage that!
+                </p>
+                <br>
+                <p>
+                    Please click on the link below to see where your help is needed today!
+                </p>
+            <% end %>
+
+            <br>
+            <%= link_to "View Current Appeals", new_user_registration_path, class:"btn btn-primary btn-lg" %>
+            <br>
+            <br>
+
+            <% if !user_signed_in? %>
+                <%= link_to " Sign Up to Donate", new_user_registration_path, class:"btn btn-primary btn-lg" %>
+            <% else %>
+                <%= link_to "Manage Appeals", new_user_registration_path, class:"btn btn-primary btn-lg" %>
+                <br>
+                <br>
+                <%= link_to "Manage Regions", regions_path, class:"btn btn-primary btn-lg" %>
+            <% end %>
+        </div>
+
+        <div class="col-md-6">
+            <% if user_signed_in? %>
+                <%= image_tag "sign_in_home", class: "home-image" %>
+            <% else %>
+                <%= image_tag "homepage", class: "home-image" %>
+            <% end %>
+        </div>
+    </div>
+</div>
