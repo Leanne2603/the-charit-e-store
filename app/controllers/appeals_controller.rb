@@ -45,6 +45,6 @@ class AppealsController < ApplicationController
   end
 
   def appeal_params
-      params.require(:appeal).permit(:appeal, :description, :delivery_address, :recipient, :active, :region_id)
+      params.require(:appeal).permit(:appeal, :description, :delivery_address, :recipient, :active, :image, :region_id)
   end 
 end
