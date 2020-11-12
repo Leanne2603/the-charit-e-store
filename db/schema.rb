@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_12_101325) do
+ActiveRecord::Schema.define(version: 2020_11_12_104330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,11 @@ ActiveRecord::Schema.define(version: 2020_11_12_101325) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["region_id"], name: "index_appeals_on_region_id"
+  end
+
+  create_table "appeals_items", id: false, force: :cascade do |t|
+    t.bigint "appeal_id", null: false
+    t.bigint "item_id", null: false
   end
 
   create_table "items", force: :cascade do |t|
