@@ -32,7 +32,7 @@
             <% if !user_signed_in? %>
                 <%= link_to " Sign Up to Donate", new_user_registration_path, class:"btn btn-primary btn-lg" %>
             <% else %>
-                <%= link_to "Manage Appeals", new_user_registration_path, class:"btn btn-primary btn-lg" %>
+                <%= link_to "Manage Appeals", appeals_path, class:"btn btn-primary btn-lg" %>
                 <br>
                 <br>
                 <%= link_to "Manage Regions", regions_path, class:"btn btn-primary btn-lg" %>

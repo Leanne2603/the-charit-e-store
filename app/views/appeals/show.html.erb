@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="display-4">Appeal Details</h1>
+        <p>
+        <strong>Appeal Name:</strong>
+        <%= @appeal.appeal %>
+        </p>
+
+        <p>
+        <strong>Active:</strong>
+        <%= @appeal.active %>
+        </p>
+
+        <p>
+        <strong>Recipient:</strong>
+        <%= @appeal.recipient %>
+        </p>
+
+        <p>
+            <strong>Delivery Address:</strong>
+            <%= @appeal.delivery_address %>
+        </p>
+
+        <p>
+            <strong>Description:</strong>
+            <%= @appeal.description %>
+        </p>
+        <%= link_to 'Edit Region', edit_appeal_path(@appeal) %> |
+        <%= link_to "Delete Region", appeal_path(@appeal), method: "delete", data: { confirm: "Are you sure" } %>
+        <br>
+        <br>
+        <%= link_to 'Back', appeals_path %>
+
+        <div class="col-md-6">
+            <% if @appeal.image.attached? %>
+            <p><%= cl_image_tag(@appeal.image.key, crop: :scale, width: 300, cloud_name: 'desxzkkeh') %></p>
+            <% end %>
+        </div>
+    </div>
+</div>
