@@ -8,22 +8,25 @@
     </div>
 </div>
 <h2>Current Appeals:</h2>
-<table>
-    <tr>
-        <th>Appeal Name</th>
-        <th>Recipient</th>
-        <th>Active?</th>
-    </tr>
-    <% @appeals.each do |appeal| %>
-    <tr>
-        <td> <%= appeal.appeal %></td>
-        <td> <%= appeal.recipient %></td>
-        <td> <%= appeal.active %></td>
-        <td> <%= link_to 'Show More', appeal_path(appeal) %></td>
 
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Appeal Name</th>
+        <th scope="col">Recipient</th>
+        <th scope="col">Active?</th>
+      </tr>
+    </thead>
+    <tbody>
     </tr>
-    <% end %>
-</table>
-<hr>
-
-<%= link_to 'Back', root_path %>
+        <% @appeals.each do |appeal| %>
+            <tr>
+                <td> <%= appeal.appeal %></td>
+                <td> <%= appeal.recipient %></td>
+                <td> <%= appeal.active %></td>
+                <td> <%= link_to 'Show More', appeal_path(appeal) %></td>
+            </tr>
+        <% end %>
+    <tr>
+    </table>
+    <%= link_to 'Back', root_path %>

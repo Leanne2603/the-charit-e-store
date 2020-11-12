@@ -8,18 +8,21 @@
     </div>
 </div>
 <h2>Regions:</h2>
-<table>
-    <tr>
-        <th>Region Name</th>
 
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Region Name</th>
+      </tr>
+    </thead>
+    <tbody>
     </tr>
-    <% @regions.each do |region| %>
+        <% @regions.each do |region| %>
+        <tr>
+            <td> <%= region.region %></td>
+            <td> <%= link_to 'Show More', region_path(region) %></td>
+        </tr>
+        <% end %>
     <tr>
-        <td> <%= region.region %></td>
-        <td> <%= link_to 'Show More', region_path(region) %></td>
-    </tr>
-    <% end %>
-</table>
-<hr>
-
-<%= link_to 'Back', root_path %>
+    </table>
+    <%= link_to 'Back', root_path %>

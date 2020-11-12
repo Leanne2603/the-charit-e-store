@@ -31,12 +31,12 @@
         <%= link_to "Delete Region", appeal_path(@appeal), method: "delete", data: { confirm: "Are you sure" } %>
         <br>
         <br>
-        <%= link_to 'Back', appeals_path %>
-
+        
         <div class="col-md-6">
             <% if @appeal.image.attached? %>
-            <p><%= cl_image_tag(@appeal.image.key, crop: :scale, width: 300, cloud_name: 'desxzkkeh') %></p>
+            <p><%= cl_image_tag(@appeal.image.key, crop: :scale, width: 400, cloud_name: 'desxzkkeh') %></p>
             <% end %>
         </div>
+        <%= link_to 'Back', appeals_path %>
     </div>
 </div>
