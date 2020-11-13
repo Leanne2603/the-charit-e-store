@@ -12,7 +12,6 @@
 <table class="table">
     <thead class="thead-dark">
       <tr>
-        <th scope="col"></th>
         <th scope="col">Appeal</th>
         <th scope="col">Recipient</th>
         <th scope="col">Active?</th>
@@ -22,7 +21,6 @@
     </tr>
         <% @appeals.each do |appeal| %>
             <tr>
-                <td><%= cl_image_tag(appeal.image.key, crop: :scale, width: 150, cloud_name: 'desxzkkeh') %></td>
                 <td> <%= appeal.appeal %></td>
                 <td> <%= appeal.recipient %></td>
                 <td> <%= appeal.active %></td>

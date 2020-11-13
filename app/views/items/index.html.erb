@@ -12,7 +12,6 @@
 <table class="table">
     <thead class="thead-dark">
       <tr>
-        <th scope="col"></th>
         <th scope="col">Item Name</th>
         <th scope="col">Item Price</th>
         <th scope="col">Item Available?</th>
@@ -22,7 +21,6 @@
     </tr>
         <% @items.each do |item| %>
         <tr>
-            <td><%= cl_image_tag(item.image.key, crop: :scale, width: 100, cloud_name: 'desxzkkeh') %></td>
             <td> <%= item.name %></td>
             <td> <%= "%.2f" % item.price %></td>
             <td> <%= item.available %></td>
