@@ -27,5 +27,9 @@ Rails.application.routes.draw do
   get 'items/edit/:item_id', to: 'items#edit', as: 'edit_item'
   delete 'items/:item_id', to: 'items#destroy'
 
+  post "/items/:item_id/buy", to: "items#buy", as: 'buy'
+  get  "/items/:item_id/success", to: "items#success", as: "success"
+  get "/items/:item_id/cancel", to: "items#cancel", as: "cancel"
+
   root to: 'home#index'
 end

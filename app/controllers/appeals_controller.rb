@@ -9,7 +9,7 @@ class AppealsController < ApplicationController
 
   def new
       @appeal = Appeal.new
-      @regions = Region.select("max(id) as id, region").group(:region)
+      @regions = Region.select("max(id) as id, region").group(:region) # creates a drop down menu on the shared new/edit appeals form for existing regions in the database without showing duplicates
   end
   
   def create
@@ -18,7 +18,7 @@ class AppealsController < ApplicationController
   end
   
   def edit
-      @regions = Region.select("max(id) as id, region").group(:region)
+      @regions = Region.select("max(id) as id, region").group(:region) # creates a drop down menu on the shared new/edit appeals form for existing regions in the database without showing duplicates
   end
   
   def update

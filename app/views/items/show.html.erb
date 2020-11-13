@@ -22,12 +22,36 @@
         <%= link_to "Delete Item", item_path(@item), method: "delete", data: { confirm: "Are you sure" } %>
         <br>
         <br>
+        <p><button id="buynow-button">Donate Now!</button></p>
         
+        <br>
+        <br>
         <div class="col-md-6">
             <% if @item.image.attached? %>
             <p><%= cl_image_tag(@item.image.key, crop: :scale, width: 400, cloud_name: 'desxzkkeh') %></p>
             <% end %>
         </div>
+
+
         <%= link_to 'Back', items_path %>
     </div>
 </div>
+
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>
+    const stripe = Stripe('<%= ENV["STRIPE_PUBLISHABLE_KEY"] %>')
+    const buyButton = document.getElementById('buynow-button')
+
+    buyButton.addEventListener('click', function() {
+        fetch('<%= buy_path(@item.id) %>', {
+            method: 'POST'
+        })
+        .then(function(response) {
+            return response.json()
+        })
+        .then(function(session) {
+            return stripe.redirectToCheckout({ sessionId: session.id})
+        })
+    })
+</script>
