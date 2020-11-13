@@ -15,7 +15,7 @@ class AppealsController < ApplicationController
   def create
     @appeal = Appeal.new(appeal_params)
     if @appeal.save
-      redirect_to appeal_path(appeal)
+      redirect_to appeal_path(@appeal)
     else
       flash[:notice] = 'Fields must not be blank!'
       redirect_to appeals_new_path

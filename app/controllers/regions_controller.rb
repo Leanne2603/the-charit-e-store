@@ -13,7 +13,7 @@ class RegionsController < ApplicationController
   def create
     @region = Region.new(region_params)
     if @region.save
-      redirect_to region_path(region)
+      redirect_to region_path(@region)
     else
       flash[:notice] = 'Field must not be blank!'
       redirect_to regions_new_path

@@ -15,7 +15,7 @@ class ItemsController < ApplicationController
   def create
       @item = Item.new(item_params)
         if @item.save
-          redirect_to item_path(item)
+          redirect_to item_path(@item)
         else
           flash[:notice] = 'Fields must not be blank!'
           redirect_to items_new_path
