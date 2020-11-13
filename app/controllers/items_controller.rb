@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
-  skip_before_action :verify_authenticity_token
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
   before_action :set_item, only: [:show, :update, :edit, :destroy, :buy]
   before_action :set_appeals
 
