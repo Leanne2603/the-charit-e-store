@@ -13,8 +13,13 @@ class ItemsController < ApplicationController
   end
   
   def create
-      item = Item.create!(item_params)
-      redirect_to item_path(item)
+      @item = Item.new(item_params)
+        if @item.save
+          redirect_to item_path(item)
+        else
+          flash[:notice] = 'Fields must not be blank!'
+          redirect_to items_new_path
+        end
   end
   
   def edit
@@ -22,13 +27,19 @@ class ItemsController < ApplicationController
   
   def update
       @item.update(item_params)
-      redirect_to items_path
+      if @item.update(item_params)
+        redirect_to items_path
+      else
+        flash[:notice] = 'Fields must not be blank. Your changes have not been saved!'
+        redirect_to item_path
+      end
   end
   
   def show
   end
 
   def destroy
+      flash[:notice] = 'Item has been successfully deleted'
       @item.destroy
       redirect_to items_path
   end
