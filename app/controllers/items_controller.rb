@@ -1,8 +1,9 @@
 class ItemsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:buy]
+  # skip_before_action :verify_authenticity_token, only: [:buy]
   before_action :authenticate_user!
   before_action :set_item, only: [:show, :update, :edit, :destroy, :buy]
   before_action :set_appeals
+  before_action :check_user_access, only: [:new, :create, :update, :edit, :destroy]
 
   def index
       @items = Item.all
@@ -12,12 +13,13 @@ class ItemsController < ApplicationController
       @item = Item.new
   end
   
+  # if fields are blank, error will be returned when attempting to save
   def create
       @item = Item.new(item_params)
         if @item.save
           redirect_to item_path(@item)
         else
-          flash[:notice] = 'Fields must not be blank!'
+          flash[:notice] = @item.errors.full_messages.to_sentence
           redirect_to items_new_path
         end
   end
@@ -30,7 +32,7 @@ class ItemsController < ApplicationController
       if @item.update(item_params)
         redirect_to items_path
       else
-        flash[:notice] = 'Fields must not be blank. Your changes have not been saved!'
+        flash[:notice] = @item.errors.full_messages.to_sentence
         redirect_to item_path
       end
   end
@@ -90,5 +92,12 @@ class ItemsController < ApplicationController
 
   def item_params
       params.require(:item).permit(:description, :name, :price, :available, :image, appeal_ids: [])
-  end 
+  end
+  
+  def check_user_access
+    if !(user_signed_in? && current_user.has_role?(:admin))
+      flash[:alert] = "You are not authorised to access that page"
+      redirect_to root_path
+    end
+  end
 end

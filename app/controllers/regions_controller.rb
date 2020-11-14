@@ -1,6 +1,7 @@
 class RegionsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_region, only: [:show, :update, :edit, :destroy]
+  before_action :check_user_access, only: [:new, :create, :update, :edit, :destroy]
 
   def index
     @regions = Region.all
@@ -15,7 +16,7 @@ class RegionsController < ApplicationController
     if @region.save
       redirect_to region_path(@region)
     else
-      flash[:notice] = 'Field must not be blank!'
+      flash[:notice] = @region.errors.full_messages.to_sentence
       redirect_to regions_new_path
     end
   end
@@ -27,7 +28,7 @@ class RegionsController < ApplicationController
     if @region.update(region_params)
         redirect_to regions_path
     else
-        flash[:notice] = 'Fields must not be blank. Your changes have not been saved!'
+        flash[:notice] = @region.errors.full_messages.to_sentence
         redirect_to region_path
     end
   end
@@ -49,5 +50,12 @@ class RegionsController < ApplicationController
 
   def region_params
     params.require(:region).permit(:region)
-  end 
+  end
+  
+  def check_user_access
+    if !(user_signed_in? && current_user.has_role?(:admin))
+      flash[:alert] = "You are not authorised to access that page"
+      redirect_to root_path
+    end
+  end
 end

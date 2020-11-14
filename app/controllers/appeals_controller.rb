@@ -1,7 +1,8 @@
 class AppealsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, only: [:update, :edit, :destroy]
   before_action :set_regions
   before_action :set_appeal, only: [:show, :update, :edit, :destroy]
+  before_action :check_user_access, only: [:new, :create, :update, :edit, :destroy]
 
   def index
     @appeals = Appeal.all
@@ -17,8 +18,8 @@ class AppealsController < ApplicationController
     if @appeal.save
       redirect_to appeal_path(@appeal)
     else
-      flash[:notice] = 'Fields must not be blank!'
-      redirect_to appeals_new_path
+        flash[:notice] = @appeal.errors.full_messages.to_sentence
+        redirect_to appeals_new_path
     end
   end
   
@@ -30,7 +31,7 @@ class AppealsController < ApplicationController
     if @appeal.update(appeal_params)
         redirect_to appeals_path
       else
-        flash[:notice] = 'Fields must not be blank. Your changes have not been saved!'
+        flash[:notice] = @appeal.errors.full_messages.to_sentence
         redirect_to appeal_path
       end
   end
@@ -56,5 +57,12 @@ class AppealsController < ApplicationController
 
   def appeal_params
     params.require(:appeal).permit(:appeal, :description, :delivery_address, :recipient, :active, :image, :region_id)
-  end 
+  end
+  
+  def check_user_access
+    if !(user_signed_in? && current_user.has_role?(:admin))
+      flash[:alert] = "You are not authorised to access that page"
+      redirect_to root_path
+    end
+  end
 end
