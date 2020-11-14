@@ -62,7 +62,7 @@ class AppealsController < ApplicationController
   def check_user_access
     if !(user_signed_in? && current_user.has_role?(:admin))
       flash[:alert] = "You are not authorised to access that page"
-      redirect_to root_path
+      redirect_to appeals_path
     end
   end
 end

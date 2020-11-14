@@ -31,13 +31,15 @@
 
             <% if !user_signed_in? %>
                 <%= link_to " Sign Up to Donate", new_user_registration_path, class:"btn btn-primary btn-lg" %>
-            <% else %>
+            <% end %>
+        
+            <% if user_signed_in? && current_user.has_role?(:admin) %> 
                 <%= link_to "Manage Appeals", appeals_path, class:"btn btn-primary btn-lg" %>
-                <br>
-                <br>
+                    <br>
+                    <br>
                 <%= link_to "Manage Regions", regions_path, class:"btn btn-primary btn-lg" %>
-                <br>
-                <br>
+                    <br>
+                    <br>
                 <%= link_to "Manage Appeal Items", items_path, class:"btn btn-primary btn-lg" %>
             <% end %>
         </div>
@@ -51,3 +53,4 @@
         </div>
     </div>
 </div>
+
