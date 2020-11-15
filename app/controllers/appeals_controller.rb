@@ -12,6 +12,9 @@ class AppealsController < ApplicationController
     @appeal = Appeal.new
     @regions = Region.select("max(id) as id, region").group(:region) # creates a drop down menu on the shared new/edit appeals form for existing regions in the database without showing duplicates
   end
+
+  def appeal_items
+  end
   
   def create
     @appeal = Appeal.new(appeal_params)
@@ -56,7 +59,7 @@ class AppealsController < ApplicationController
   end
 
   def appeal_params
-    params.require(:appeal).permit(:appeal, :description, :delivery_address, :recipient, :active, :image, :region_id)
+    params.require(:appeal).permit(:appeal, :description, :delivery_address, :recipient, :active, :image, :region_id, item_ids: [])
   end
   
   def check_user_access

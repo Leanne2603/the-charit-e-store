@@ -11,9 +11,6 @@ class ItemsController < ApplicationController
 
   def new
       @item = Item.new
-  
-      
-  def appeal_items
   end
   
   # if fields are blank, error will be returned when attempting to save
