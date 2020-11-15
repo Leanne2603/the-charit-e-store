@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get '/appeals', to: 'appeals#index'
   get '/appeals/new', to: 'appeals#new'
   post '/appeals', to: 'appeals#create'
-  get '/appeals/appeal_items', to: 'appeals#appeal_items'
+  get '/appeals/appeal_items/:appeal_id', to: 'appeals#appeal_items', as: 'view_appeal_items'
   get 'appeals/:appeal_id', to: 'appeals#show', as: 'appeal'
   patch 'appeals/:appeal_id', to: 'appeals#update'
   get 'appeals/edit/:appeal_id', to: 'appeals#edit', as: 'edit_appeal'

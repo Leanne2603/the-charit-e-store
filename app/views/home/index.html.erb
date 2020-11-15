@@ -34,9 +34,6 @@
             <% end %>
         
             <% if user_signed_in? && current_user.has_role?(:admin) %> 
-                <%= link_to "Manage Appeals", appeals_path, class:"btn btn-primary btn-lg" %>
-                    <br>
-                    <br>
                 <%= link_to "Manage Regions", regions_path, class:"btn btn-primary btn-lg" %>
                     <br>
                     <br>

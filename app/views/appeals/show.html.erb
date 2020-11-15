@@ -4,31 +4,35 @@
         <div class="col-md-6">
             <h1 class="display-4">Appeal Details</h1>
         <p>
-        <strong>Appeal Name:</strong>
-        <%= @appeal.appeal %>
+            <strong>Appeal Name:</strong>
+            <%= @appeal.appeal %>
         </p>
 
         <p>
-        <strong>Active:</strong>
-        <%= @appeal.active %>
-        </p>
-
-        <p>
-        <strong>Recipient:</strong>
-        <%= @appeal.recipient %>
-        </p>
-
-        <p>
-            <strong>Delivery Address:</strong>
-            <%= @appeal.delivery_address %>
+            <strong>Recipient:</strong>
+            <%= @appeal.recipient %>
         </p>
 
         <p>
             <strong>Description:</strong>
             <%= @appeal.description %>
         </p>
-        <%= link_to 'Edit Appeal', edit_appeal_path(@appeal) %> |
-        <%= link_to "Delete Appeal", appeal_path(@appeal), method: "delete", data: { confirm: "Are you sure" } %>
+
+        <p>
+            <% if user_signed_in? && current_user.has_role?(:admin) %> 
+                <strong>Active:</strong>
+            <%= @appeal.active %>
+        </p>
+
+        <p>
+            <strong>Delivery Address:</strong>
+            <%= @appeal.delivery_address %>
+        </p>
+        
+                <%= link_to 'Edit Appeal', edit_appeal_path(@appeal) %> |
+                <%= link_to "Delete Appeal", appeal_path(@appeal), method: "delete", data: { confirm: "Are you sure" } %>
+
+            <% end %>
         <br>
         <br>
         
@@ -37,6 +41,12 @@
             <p><%= cl_image_tag(@appeal.image.key, crop: :scale, width: 400, cloud_name: 'desxzkkeh') %></p>
             <% end %>
         </div>
+        <%= link_to "View Items Needed", view_appeal_items_path, class:"btn btn-primary btn-lg" %>
+        <br>
+        <br>
         <%= link_to 'Back', appeals_path %>
     </div>
 </div>
+
+
+

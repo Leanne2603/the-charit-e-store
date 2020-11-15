@@ -1,38 +1,49 @@
 <div class="jumbotron">
     <div class="row">
         <div class="col-md-6">
-            <h1 class="display-4">Manage Appeals</h1>
+            <h1 class="display-4">Appeals</h1>
             <br>
-            <%= link_to "Add New Appeal", 'appeals/new', class:"btn btn-primary btn-lg" %>
+            <% if user_signed_in? && current_user.has_role?(:admin) %> 
+                <%= link_to "Add New Appeal", 'appeals/new', class:"btn btn-primary btn-lg" %>
+            <% end %>
         </div>
     </div>
 </div>
-<h2>Current Appeals:</h2>
 
-<table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col"></th>
-        <th scope="col">Appeal</th>
-        <th scope="col">Recipient</th>
-        <th scope="col">Active?</th>
-      </tr>
-    </thead>
-    <tbody>
-    </tr>
-        <% @appeals.each do |appeal| %>
-            <tr>
-                <% if appeal.image.attached? %>
-                    <td><%= cl_image_tag(appeal.image.key, crop: :scale, width: 150, cloud_name: 'desxzkkeh') %></td>
-                <% else %>
-                    <td><%= "No image" %></td>
-                <% end %>
-                <td> <%= appeal.appeal %></td>
-                <td> <%= appeal.recipient %></td>
-                <td> <%= appeal.active %></td>
-                <td> <%= link_to 'Show More', appeal_path(appeal) %></td>
-            </tr>
-        <% end %>
-    <tr>
-    </table>
-    <%= link_to 'Back', root_path %>
+<h2>Current Appeals:</h2>
+    <% @appeals.each do |appeal| %>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">Appeal</th>
+                        <th scope="col">Recipient</th>
+                        <% if user_signed_in? && current_user.has_role?(:admin) %>
+                            <th scope="col">Active?</th>
+                        <% else %>
+                            <th scope="col">Description</th>
+                        <% end %>
+                    </th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tr>
+                    <tr>
+                        <% if appeal.image.attached? %>
+                            <td><%= cl_image_tag(appeal.image.key, crop: :scale, width: 150, cloud_name: 'desxzkkeh') %></td>
+                        <% else %>
+                            <td><%= "No image" %></td>
+                        <% end %>
+                        <td> <%= appeal.appeal %></td>
+                        <td> <%= appeal.recipient %></td>
+                        <% if user_signed_in? && current_user.has_role?(:admin) %>
+                            <td> <%= appeal.active %></td>
+                        <% else %>
+                            <td> <%= appeal.description %></td>
+                        <% end %>
+                        <td> <%= link_to 'Show More', appeal_path(appeal) %></td>
+                    </tr>
+                <tr>
+            </table>
+    <% end %>
+<%= link_to 'Back', root_path %>

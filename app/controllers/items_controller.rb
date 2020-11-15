@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_item, only: [:show, :update, :edit, :destroy, :buy]
   before_action :set_appeals
-  before_action :check_user_access, only: [:new, :create, :update, :edit, :destroy]
+  before_action :check_user_access, only: [:new, :create, :update, :edit, :destroy, :index, :show]
 
   def index
       @items = Item.all
@@ -11,6 +11,9 @@ class ItemsController < ApplicationController
 
   def new
       @item = Item.new
+  
+      
+  def appeal_items
   end
   
   # if fields are blank, error will be returned when attempting to save
