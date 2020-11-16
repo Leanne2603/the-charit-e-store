@@ -25,7 +25,7 @@ appeal_1 = Appeal.new(active: true, appeal: "Queensland Drought", description: "
 appeal_1.image.attach(io: File.open('/home/leannestranks/CoderAcademy/LeanneStranks_T2A2/src/the-charit-e-store/app/assets/images/Drought.jpg'), filename: "Drought.jpg")
 appeal_1.save
 appeal_2 = Appeal.new(active: true, appeal: "Victorian Bushfires", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum gravida sodales purus ut sodales. Donec scelerisque tellus turpis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed magna eros.", recipient: "VIC Fire Brigade", delivery_address: "6 First Avenue", region_id: region_7.id)
-appeal_2.image.attach(io: File.open(File.join('/home/leannestranks/CoderAcademy/LeanneStranks_T2A2/src/the-charit-e-store/app/assets/images/Bushfire.jpg'), filename: "Bushfire.jpg")
+appeal_2.image.attach(io: File.open('/home/leannestranks/CoderAcademy/LeanneStranks_T2A2/src/the-charit-e-store/app/assets/images/Bushfire.jpg'), filename: "Bushfire.jpg")
 appeal_2.save
 appeal_3 = Appeal.new(active: true, appeal: "Queensland Bushfires", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum gravida sodales purus ut sodales. Donec scelerisque tellus turpis. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sed magna eros.", recipient: "QLD Fire Brigade", delivery_address: "33 Second Street", region_id: region_2.id)
 appeal_3.image.attach(io: File.open('/home/leannestranks/CoderAcademy/LeanneStranks_T2A2/src/the-charit-e-store/app/assets/images/Bushfire.jpg'), filename: "Bushfire.jpg")
