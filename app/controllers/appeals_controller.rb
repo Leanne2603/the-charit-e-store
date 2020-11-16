@@ -1,8 +1,9 @@
 class AppealsController < ApplicationController
   before_action :authenticate_user!, only: [:update, :edit, :destroy]
   before_action :set_regions
-  before_action :set_appeal, only: [:show, :update, :edit, :destroy]
+  before_action :set_appeal, only: [:show, :update, :edit, :destroy, :appeal_items]
   before_action :check_user_access, only: [:new, :create, :update, :edit, :destroy]
+
 
   def index
     @appeals = Appeal.all

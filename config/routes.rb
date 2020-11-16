@@ -14,10 +14,10 @@ Rails.application.routes.draw do
   get '/appeals', to: 'appeals#index'
   get '/appeals/new', to: 'appeals#new'
   post '/appeals', to: 'appeals#create'
-  get '/appeals/appeal_items/:appeal_id', to: 'appeals#appeal_items', as: 'view_appeal_items'
+  get '/appeals/:appeal_id/appeal_items', to: 'appeals#appeal_items', as: 'view_appeal_items'
   get 'appeals/:appeal_id', to: 'appeals#show', as: 'appeal'
   patch 'appeals/:appeal_id', to: 'appeals#update'
-  get 'appeals/edit/:appeal_id', to: 'appeals#edit', as: 'edit_appeal'
+  get 'appeals/:appeal_id/edit', to: 'appeals#edit', as: 'edit_appeal'
   delete 'appeals/:appeal_id', to: 'appeals#destroy'
 
   get '/items', to: 'items#index'
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   post '/items', to: 'items#create'
   get 'items/:item_id', to: 'items#show', as: 'item'
   patch 'items/:item_id', to: 'items#update'
-  get 'items/edit/:item_id', to: 'items#edit', as: 'edit_item'
+  get 'items/:item_id/edit', to: 'items#edit', as: 'edit_item'
   delete 'items/:item_id', to: 'items#destroy'
 
   post "/items/:item_id/buy", to: "items#buy", as: 'buy'

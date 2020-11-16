@@ -1,7 +1,16 @@
-<% @item.appeals.each do |appeal| %>
-    <%= appeal.appeal %>
-<% end %>
-
-
-
-
+<div class="row">
+    <% @appeal.items.each do |item| %>
+        <div class="col-md-4"></div>
+            <div class="card" style="width: 18rem;">
+                <% if item.image.attached? %>
+                    <%= cl_image_tag(item.image.key, crop: :scale, width: 400, cloud_name: 'desxzkkeh', class:"card-img-top") %>
+                <% end %>
+                <div class="card-body">
+                    <h5 class="card-title"><%= item.name %></h5>
+                    <p class="card-text"><%= item.description %></p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+    <% end %>
+</div>
