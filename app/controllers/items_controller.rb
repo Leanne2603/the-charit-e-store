@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
-  # skip_before_action :verify_authenticity_token, only: [:buy]
-  before_action :authenticate_user!
+  skip_before_action :verify_authenticity_token, only: [:buy]
+  before_action :authenticate_user!, except: [:buy]
   before_action :set_item, only: [:show, :update, :edit, :destroy, :buy]
   before_action :set_appeals
   before_action :check_user_access, only: [:new, :create, :update, :edit, :destroy, :index, :show]
@@ -72,12 +72,12 @@ class ItemsController < ApplicationController
 
   def success
     flash[:notice] = 'Thank you for your donation. Your payment has been successfully processed.'
-    redirect_to items_path 
+    redirect_to appeals_path
   end
 
   def cancel
     flash[:notice] = 'Unfortunately we were not able to process your payment at this time. Please try again'
-    redirect_to item_path(item)
+    redirect_to view_appeal_items_path(appeal)
   end
 
   private

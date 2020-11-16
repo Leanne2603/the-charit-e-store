@@ -1,4 +1,5 @@
 class AppealsController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:buy]
   before_action :authenticate_user!, only: [:update, :edit, :destroy]
   before_action :set_regions
   before_action :set_appeal, only: [:show, :update, :edit, :destroy, :appeal_items]
@@ -47,6 +48,40 @@ class AppealsController < ApplicationController
     flash[:notice] = 'Appeal has been successfully deleted'
     @appeal.destroy
     redirect_to appeals_path
+  end
+
+  def buy
+    Stripe.api_key = ENV['STRIPE_API_KEY']
+    session = Stripe::Checkout::Session.create({
+      payment_method_types: ['card'], 
+      mode: 'payment',
+      success_url: success_url(params[:item_id]),
+      cancel_url: cancel_url(params[:item_id]),
+      line_items: [
+        {
+          price_data: {
+            currency: 'aud',
+            product_data: {
+              name: @item.name
+            },
+            unit_amount: (@item.price.to_f * 100).to_i
+          },
+          quantity: 1
+        }
+      ]
+    })
+
+    render json: session
+  end
+
+  def success
+    flash[:notice] = 'Thank you for your donation. Your payment has been successfully processed.'
+    redirect_to items_path 
+  end
+
+  def cancel
+    flash[:notice] = 'Unfortunately we were not able to process your payment at this time. Please try again'
+    redirect_to item_path(item)
   end
 
   private
