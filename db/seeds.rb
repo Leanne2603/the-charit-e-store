@@ -94,27 +94,219 @@ appeal_12.image.attach(
 )
 appeal_12.save!
 
-item_1 = Item.new(available: true, name: "$5 Donation", price: 5, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_10])
+item_1 = Item.new(available: true, name: "$5 Donation", price: 5, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_1])
 item_1.image.attach(
     io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
     filename: "Money.jpg"
 )
 item_1.save!
-item_2 = Item.new(available: true, name: "$10 Donation", price: 10, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_10])
+item_2 = Item.new(available: true, name: "$10 Donation", price: 10, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_1])
 item_2.image.attach(
     io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
     filename: "Money.jpg"
 )
 item_2.save!
-item_3 = Item.new(available: true, name: "$20 Donation", price: 20, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_10])
+item_3 = Item.new(available: true, name: "$20 Donation", price: 20, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_1])
 item_3.image.attach(
     io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
     filename: "Money.jpg"
 )
 item_3.save!
-item_4 = Item.new(available: true, name: "$50 Donation", price: 50, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_10])
+item_4 = Item.new(available: true, name: "$50 Donation", price: 50, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_1])
 item_4.image.attach(
     io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
     filename: "Money.jpg"
 )
 item_4.save!
+item_1 = Item.new(available: true, name: "$5 Donation", price: 5, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_2])
+item_1.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_1.save!
+item_2 = Item.new(available: true, name: "$10 Donation", price: 10, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_2])
+item_2.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_2.save!
+item_3 = Item.new(available: true, name: "$20 Donation", price: 20, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_2])
+item_3.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_3.save!
+item_4 = Item.new(available: true, name: "$50 Donation", price: 50, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_2])
+item_4.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_4.save!
+item_1 = Item.new(available: true, name: "$5 Donation", price: 5, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_3])
+item_1.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_1.save!
+item_2 = Item.new(available: true, name: "$10 Donation", price: 10, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_3])
+item_2.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_2.save!
+item_3 = Item.new(available: true, name: "$20 Donation", price: 20, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_3])
+item_3.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_3.save!
+item_4 = Item.new(available: true, name: "$50 Donation", price: 50, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_3])
+item_4.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_4.save!
+item_1 = Item.new(available: true, name: "$5 Donation", price: 5, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_4])
+item_1.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_1.save!
+item_2 = Item.new(available: true, name: "$10 Donation", price: 10, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_4])
+item_2.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_2.save!
+item_3 = Item.new(available: true, name: "$20 Donation", price: 20, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_4])
+item_3.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_3.save!
+item_4 = Item.new(available: true, name: "$50 Donation", price: 50, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_4])
+item_4.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_4.save!
+item_1 = Item.new(available: true, name: "$5 Donation", price: 5, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_5])
+item_1.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_1.save!
+item_2 = Item.new(available: true, name: "$10 Donation", price: 10, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_5])
+item_2.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_2.save!
+item_3 = Item.new(available: true, name: "$20 Donation", price: 20, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_5])
+item_3.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_3.save!
+item_4 = Item.new(available: true, name: "$50 Donation", price: 50, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_5])
+item_4.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_4.save!
+item_5 = Item.new(available: true, name: "$5 Donation", price: 5, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_5])
+item_5.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_5.save!
+item_6 = Item.new(available: true, name: "$10 Donation", price: 10, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_6])
+item_6.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_6.save!
+item_7 = Item.new(available: true, name: "$20 Donation", price: 20, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_6])
+item_7.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_7.save!
+item_8 = Item.new(available: true, name: "$50 Donation", price: 50, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_6])
+item_8.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_8.save!
+item_9 = Item.new(available: true, name: "$5 Donation", price: 5, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_6])
+item_9.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_9.save!
+item_10 = Item.new(available: true, name: "$10 Donation", price: 10, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_7])
+item_10.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_10.save!
+item_11 = Item.new(available: true, name: "$20 Donation", price: 20, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_7])
+item_11.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_11.save!
+item_12 = Item.new(available: true, name: "$50 Donation", price: 50, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_7])
+item_12.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_12.save!
+item_13 = Item.new(available: true, name: "$50 Donation", price: 50, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_8])
+item_13.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_13.save!
+item_14 = Item.new(available: true, name: "$50 Donation", price: 50, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_8])
+item_14.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_14.save!
+item_15 = Item.new(available: true, name: "$50 Donation", price: 50, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_8])
+item_15.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_15.save!
+item_16 = Item.new(available: true, name: "$50 Donation", price: 50, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_9])
+item_16.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_16.save!
+item_17 = Item.new(available: true, name: "$50 Donation", price: 50, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_10])
+item_17.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_17.save!
+item_18 = Item.new(available: true, name: "$50 Donation", price: 50, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_11])
+item_18.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_18.save!
+item_19 = Item.new(available: true, name: "$50 Donation", price: 50, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_12])
+item_19.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_19.save!
+item_20 = Item.new(available: true, name: "$50 Donation", price: 50, description: "The money donated will be given to purchase crucial items or services", appeals: [appeal_12])
+item_20.image.attach(
+    io: File.open(Rails.root.join("app", "assets", "images", "Money.jpg")), 
+    filename: "Money.jpg"
+)
+item_20.save!
