@@ -7,6 +7,7 @@ class AdminController < ApplicationController
 
     private
 
+    # ensures only admin can view users
     def check_user_access
         if !(user_signed_in? && current_user.has_role?(:admin))
           flash[:alert] = "You are not authorised to access that page"

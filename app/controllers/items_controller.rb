@@ -1,13 +1,17 @@
 class ItemsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:buy] # Donate now button would not generate payment page without this option in both items and appeals controller
+  skip_before_action :verify_authenticity_token, only: [:buy] # Donate now button would not generate payment page without this option
   before_action :authenticate_user!, except: [:buy]
   before_action :set_item, only: [:show, :update, :edit, :destroy, :buy]
-  before_action :set_appeals # sets appeals 
+  before_action :set_appeals 
   before_action :check_user_access, only: [:new, :create, :update, :edit, :destroy, :index, :show] # Checks whether a user has permission to these functions - if not, it will redirect back to the root path
 
   def index
-      # paginates to show 5 per page
+    # paginates to show 5 per page
+    if (user_signed_in? && current_user.has_role?(:admin))
       @items = Item.paginate(page: params[:page])
+    else
+      @items = Item.paginate(page: params[:page]).where(active: true)
+    end
   end
 
   def new

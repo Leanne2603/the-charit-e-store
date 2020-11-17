@@ -1,5 +1,4 @@
 class AppealsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:buy] # Donate now button would not generate payment page without this option in both items and appeals controller
   before_action :authenticate_user!, only: [:update, :edit, :destroy]
   before_action :set_regions
   before_action :set_appeal, only: [:show, :update, :edit, :destroy, :appeal_items]
@@ -8,18 +7,27 @@ class AppealsController < ApplicationController
 
   def index
     # renders 9 appeals per page
-    @appeals = Appeal.paginate(page: params[:page])
+    # checks to see if the user is signed in with admin - if the user is signed it, they will be able to see all appeals whether the 
+    # active status is set to true or not. A member will only see results where active is set to true
+    if (user_signed_in? && current_user.has_role?(:admin))
+      @appeals = Appeal.paginate(page: params[:page])
+    else
+      @appeals = Appeal.paginate(page: params[:page]).where(active: true)
+    end
   end
 
   def new
     @appeal = Appeal.new
-    @regions = Region.select("max(id) as id, region").group(:region) # creates a drop down menu on the shared new/edit appeals form for existing regions in the database without showing duplicates
+    # creates a drop down menu on the shared new/edit appeals form for existing regions in the database without showing duplicates
+    @regions = Region.select("max(id) as id, region").group(:region) 
   end
 
   def appeal_items
   end
   
   def create
+    # admin creates the new appeal and is redirected to the new appeal which has been created. If there is an issue with saving, a message
+    # will show advising what the error is (i.e. mandatory fields left blank)
     @appeal = Appeal.new(appeal_params)
     if @appeal.save
       redirect_to appeal_path(@appeal)
@@ -30,10 +38,12 @@ class AppealsController < ApplicationController
   end
   
   def edit
-    @regions = Region.select("max(id) as id, region").group(:region) # creates a drop down menu on the shared new/edit appeals form for existing regions in the database without showing duplicates
+    # creates a drop down menu on the shared new/edit appeals form for existing regions in the database without showing duplicates
+    @regions = Region.select("max(id) as id, region").group(:region) 
   end
   
   def update
+    # admin can update appeals. If there is an error, it will redirect and advise of error
     if @appeal.update(appeal_params)
         redirect_to appeals_path
       else
@@ -51,11 +61,6 @@ class AppealsController < ApplicationController
     redirect_to appeals_path
   end
 
-  def cancel
-    flash[:notice] = 'Unfortunately we were not able to process your payment at this time. Please try again'
-    redirect_to item_path(item)
-  end
-
   private
 
   def set_regions
@@ -70,6 +75,7 @@ class AppealsController < ApplicationController
     params.require(:appeal).permit(:appeal, :description, :delivery_address, :recipient, :active, :image, :region_id, item_ids: [])
   end
   
+  # ensures that no user other than admin can navigate to non permitted pages (i.e CRUD functions (except read))
   def check_user_access
     if !(user_signed_in? && current_user.has_role?(:admin))
       flash[:alert] = "You are not authorised to access that page"
