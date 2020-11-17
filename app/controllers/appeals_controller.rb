@@ -1,13 +1,14 @@
 class AppealsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:buy]
+  skip_before_action :verify_authenticity_token, only: [:buy] # Donate now button would not generate payment page without this option in both items and appeals controller
   before_action :authenticate_user!, only: [:update, :edit, :destroy]
   before_action :set_regions
   before_action :set_appeal, only: [:show, :update, :edit, :destroy, :appeal_items]
-  before_action :check_user_access, only: [:new, :create, :update, :edit, :destroy]
+  before_action :check_user_access, only: [:new, :create, :update, :edit, :destroy] # Checks whether a user has permission to these functions - if not, it will redirect back to the root path
 
 
   def index
-    @appeals = Appeal.all
+    # renders 9 appeals per page
+    @appeals = Appeal.paginate(page: params[:page])
   end
 
   def new
@@ -48,35 +49,6 @@ class AppealsController < ApplicationController
     flash[:notice] = 'Appeal has been successfully deleted'
     @appeal.destroy
     redirect_to appeals_path
-  end
-
-  def buy
-    Stripe.api_key = ENV['STRIPE_API_KEY']
-    session = Stripe::Checkout::Session.create({
-      payment_method_types: ['card'], 
-      mode: 'payment',
-      success_url: success_url(params[:item_id]),
-      cancel_url: cancel_url(params[:item_id]),
-      line_items: [
-        {
-          price_data: {
-            currency: 'aud',
-            product_data: {
-              name: @item.name
-            },
-            unit_amount: (@item.price.to_f * 100).to_i
-          },
-          quantity: 1
-        }
-      ]
-    })
-
-    render json: session
-  end
-
-  def success
-    flash[:notice] = 'Thank you for your donation. Your payment has been successfully processed.'
-    redirect_to items_path 
   end
 
   def cancel

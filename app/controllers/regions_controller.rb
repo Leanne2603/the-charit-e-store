@@ -4,7 +4,8 @@ class RegionsController < ApplicationController
   before_action :check_user_access, only: [:new, :create, :update, :edit, :destroy]
 
   def index
-    @regions = Region.all
+    # renders 50 regions per page
+    @regions = Region.paginate(page: params[:page])
   end
 
   def new

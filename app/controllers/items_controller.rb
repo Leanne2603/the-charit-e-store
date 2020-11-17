@@ -1,12 +1,13 @@
 class ItemsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:buy]
+  skip_before_action :verify_authenticity_token, only: [:buy] # Donate now button would not generate payment page without this option in both items and appeals controller
   before_action :authenticate_user!, except: [:buy]
   before_action :set_item, only: [:show, :update, :edit, :destroy, :buy]
-  before_action :set_appeals
-  before_action :check_user_access, only: [:new, :create, :update, :edit, :destroy, :index, :show]
+  before_action :set_appeals # sets appeals 
+  before_action :check_user_access, only: [:new, :create, :update, :edit, :destroy, :index, :show] # Checks whether a user has permission to these functions - if not, it will redirect back to the root path
 
   def index
-      @items = Item.all
+      # paginates to show 5 per page
+      @items = Item.paginate(page: params[:page])
   end
 
   def new
@@ -27,6 +28,7 @@ class ItemsController < ApplicationController
   def edit
   end
   
+  # updates the item chosen and redirects to the main list of items
   def update
       @item.update(item_params)
       if @item.update(item_params)
@@ -40,12 +42,14 @@ class ItemsController < ApplicationController
   def show
   end
 
+  # admin access to delete items from list
   def destroy
       flash[:notice] = 'Item has been successfully deleted'
       @item.destroy
       redirect_to items_path
   end
 
+  # logic for Stripe payment to purchase items
   def buy
     Stripe.api_key = ENV['STRIPE_API_KEY']
     session = Stripe::Checkout::Session.create({
