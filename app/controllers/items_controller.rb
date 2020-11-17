@@ -81,7 +81,7 @@ class ItemsController < ApplicationController
 
   def cancel
     flash[:notice] = 'Unfortunately we were not able to process your payment at this time. Please try again'
-    redirect_to view_appeal_items_path(appeal)
+    redirect_to appeals_path
   end
 
   private
