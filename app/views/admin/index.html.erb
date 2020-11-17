@@ -1,0 +1,27 @@
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-6">
+            <h1 class="display-4">View Users</h1>
+        </div>
+    </div>
+</div>
+
+<% @users.each do |user| %>
+<table class="table">
+        <thead class="thead-dark">
+        <tr>
+            <th scope="col">First Name</th>
+            <th scope="col">Last Name</th>
+            <th scope="col">Email</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tr>
+        <tr>
+            <td> <%= user.first_name %></td>
+            <td> <%= user.last_name %></td>
+            <td> <%= user.email %></td>
+        </tr>
+    <tr>
+</table>
+<% end %>

@@ -32,5 +32,7 @@ Rails.application.routes.draw do
   get  "/items/:item_id/success", to: "items#success", as: "success"
   get "/items/:item_id/cancel", to: "items#cancel", as: "cancel"
 
+  get "/admin/users", to: "admin#index"
+
   root to: 'home#index'
 end
