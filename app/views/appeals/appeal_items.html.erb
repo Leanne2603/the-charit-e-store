@@ -10,20 +10,21 @@
                     <p class="card-text"><%= item.description %></p>
                     <p class="card-text">Item Price: $<%= "%.2f" % item.price %></p>
                     <% if user_signed_in? && current_user.has_role?(:admin) %>
-                    <%= link_to 'Edit Item', edit_item_path(item), class:"btn btn-primary btn-lg" %>
+                        <%= link_to 'Edit Item', edit_item_path(item), class:"btn btn-primary btn-lg" %>
                     <% else %>
-                        <button id="buynow-button">Donate Now!</button>
+                        <button data-item-id="<%= item.id %>" class="buynow-button">Donate Now!</button>
                     <% end %>
                 </div>
             </div>
         </div>
 
-        <script>
-            const stripe = Stripe('<%= ENV["STRIPE_PUBLISHABLE_KEY"] %>')
-            const buyButton = document.getElementById('buynow-button')
-
-            buyButton.addEventListener('click', function() {
-                fetch('<%= buy_path(item.id) %>', {
+    <% end %>
+    <script>
+        const stripe = Stripe('<%= ENV["STRIPE_PUBLISHABLE_KEY"] %>')
+        const buyButtons = document.getElementsByClassName('buynow-button')
+        for (button of buyButtons) {
+            button.addEventListener('click', function(event) {
+                fetch(`/items/${event.target.dataset.itemId}/buy`, {
                     method: 'POST'
                 })
                 .then(function(response) {
@@ -33,6 +34,6 @@
                     return stripe.redirectToCheckout({ sessionId: session.id})
                 })
             })
-        </script>
-    <% end %>
+        }
+    </script>
 </div>

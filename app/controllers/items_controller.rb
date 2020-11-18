@@ -53,7 +53,7 @@ class ItemsController < ApplicationController
       redirect_to items_path
   end
 
-  # logic for Stripe payment to purchase items
+  # logic for Stripe payment to purchase items - aud only
   def buy
     Stripe.api_key = ENV['STRIPE_API_KEY']
     session = Stripe::Checkout::Session.create({
