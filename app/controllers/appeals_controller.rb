@@ -1,5 +1,5 @@
 class AppealsController < ApplicationController
-  before_action :authenticate_user!, only: [:update, :edit, :destroy]
+  before_action :authenticate_user!, only: [:update, :edit, :destroy, :appeal_items] # authenticates a user to ensure that only admin can access the CRUD actions and only a registered user can view items which relate to an appeal
   before_action :set_regions
   before_action :set_appeal, only: [:show, :update, :edit, :destroy, :appeal_items]
   before_action :check_user_access, only: [:new, :create, :update, :edit, :destroy] # Checks whether a user has permission to these functions - if not, it will redirect back to the root path
