@@ -6,6 +6,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  self.per_page = 20
+
   def assign_default_role
     self.add_role(:member) if self.roles.blank?
   end
