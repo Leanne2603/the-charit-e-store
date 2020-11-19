@@ -17,8 +17,8 @@
                 </div>
             </div>
         </div>
-
     <% end %>
+
     <script>
         const stripe = Stripe('<%= ENV["STRIPE_PUBLISHABLE_KEY"] %>')
         const buyButtons = document.getElementsByClassName('buynow-button')
@@ -37,3 +37,5 @@
         }
     </script>
 </div>
+<br>
+<%= link_to 'Back', appeal_path %>

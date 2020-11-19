@@ -1,6 +1,7 @@
 class AdminController < ApplicationController
     before_action :check_user_access # Checks whether a user has permission to these functions - if not, it will redirect back to the root path
 
+    # further development required for this function in order for an admin to modify a user's access level
     def index
       @users = User.paginate(page: params[:page])
     end

@@ -78,11 +78,13 @@ class ItemsController < ApplicationController
     render json: session
   end
 
+  # notification received when a payment is successful. User is redirected to the index appeals page
   def success
     flash[:notice] = 'Thank you for your donation. Your payment has been successfully processed.'
     redirect_to appeals_path
   end
 
+  # notification if payment fails. User is redirected to the main appeals page.
   def cancel
     flash[:notice] = 'Unfortunately we were not able to process your payment at this time. Please try again'
     redirect_to appeals_path
@@ -94,6 +96,7 @@ class ItemsController < ApplicationController
       @item = Item.find(params[:item_id])
   end
 
+  # sets the appeals so that items can be added to the appeal
   def set_appeals
     @appeals = Appeal.all
   end

@@ -35,13 +35,14 @@
             <% end %>
         <br>
         <br>
-        
+            <%= link_to "View Items Needed", view_appeal_items_path, class:"btn btn-primary btn-lg" %>
+            <br>
+            <br>
         <div class="col-md-6">
             <% if @appeal.image.attached? %>
             <p><%= cl_image_tag(@appeal.image.key, crop: :scale, width: 400, cloud_name: 'desxzkkeh') %></p>
             <% end %>
         </div>
-        <%= link_to "View Items Needed", view_appeal_items_path, class:"btn btn-primary btn-lg" %>
         <br>
         <br>
         <%= link_to 'Back', appeals_path %>
