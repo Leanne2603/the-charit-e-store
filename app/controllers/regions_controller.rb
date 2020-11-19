@@ -12,6 +12,7 @@ class RegionsController < ApplicationController
     @region = Region.new
   end
   
+  # creates a new region or generates an error if unable to save
   def create
     @region = Region.new(region_params)
     if @region.save
@@ -25,6 +26,7 @@ class RegionsController < ApplicationController
   def edit
   end
   
+  # updates region details or provides an error message as to why update can not be completed.
   def update
     if @region.update(region_params)
         redirect_to regions_path
@@ -53,6 +55,7 @@ class RegionsController < ApplicationController
     params.require(:region).permit(:region)
   end
   
+  # authenticates a user had admin access prior to accessing the functions associated to regions
   def check_user_access
     if !(user_signed_in? && current_user.has_role?(:admin))
       flash[:alert] = "You are not authorised to access that page"
